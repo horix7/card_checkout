@@ -10,7 +10,23 @@ import { BsFillQuestionCircleFill } from "react-icons/bs";
 export default class CheckoutForm extends Component {
 
     state = {
+        card_number: "",
+        card_valid: "",
+        card_code: "",
 
+    }
+
+
+    cardNumberChanger = (event) => {
+        // if(event.target.value )
+    }
+
+    cardValidChanger = () => {
+        
+    }
+
+    cardCodeChanger = () => {
+        
     }
 
 
