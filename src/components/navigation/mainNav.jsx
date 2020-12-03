@@ -8,6 +8,14 @@ export default class MainNav extends Component  {
     render( ) {
         return (
             <Fragment>
+                 <div className="logo2">
+                        <div className="image">
+                            <img width="50px" src={cardPic} alt=""/>
+                        </div>
+
+                        <p>E-marchant Card</p>
+                    </div>
+
                 <nav className="navigation">
                     <div className="back">
                         <IconContext.Provider value={{ color: "black", className: "backIcon" }} >
