@@ -1,16 +1,85 @@
 import React , {Component , Fragment } from 'react'
 import AfricXyz from '../../Assets/Africaxyz.png'
 import paypal from '../../Assets/payapl.png'
-import bank from '../../Assets/bank.png'
+import bank from '../../Assets/momo.png'
 import credit from '../../Assets/credit.png'
 import secure from '../../Assets/secure.png'
 import { IconContext } from 'react-icons/lib'
 import { IoIosArrowForward } from "react-icons/io";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
+import MomoPay from '../calls/payment'
+import ReactLoading from 'react-loading';
+ import nodeForge from 'node-forge'
+ import PayPal from '../calls/paypal'
+ 
+const momo = new MomoPay()
+
+
+
 export default class CheckoutForm extends Component {
 
     state = {
+        card_number: "",
+        card_valid: "",
+        card_code: "",
+        open_momo: false,
+        number: "",
+        error:false,
+        sucess: false,
+        loading: false
+    }
 
+
+
+    makePayment = () => {
+
+        // this.setLoading(true)
+        
+        if(this.state.open_momo) {
+            momo.payMomo(this.setLoading , this.setErrorMade, this.state.number ,this.setSuccess)
+        } else {
+            alert("Card Payment Is not working now ")
+        }
+    }
+
+    changeToMomo = () => {
+        console.log("Changed")  
+        const { open_momo } = {...this.state}
+         this.setState({open_momo : !open_momo   })
+    }
+    setLoading = (loading) => {
+
+        this.setState({
+            loading: loading
+        })
+    } 
+
+    setSuccess = (loading) => {
+
+        // this.setState({
+        //     sucess: loading
+        // })
+
+        alert("success it's made haha ")
+    } 
+
+
+    setErrorMade = (loading) => {
+        alert("Something Went Wrong      ")
+        this.setState({
+            error: loading
+        })
+    }
+    cardNumberChanger = (event) => {
+        // if(event.target.value )
+    }
+
+    cardValidChanger = () => {
+        
+    }
+
+    cardCodeChanger = () => {
+        
     }
 
 
@@ -32,14 +101,18 @@ export default class CheckoutForm extends Component {
                                    </IconContext.Provider>
                                </div>
                                 <ul>
-                                    <li><img width="150px" src={paypal} alt=""/></li>
-                                    <li><img width="150px" src={bank} alt=""/></li>
+                                    <li onClick={this.changeToMomo} ><img width="90%" src={paypal} alt=""/></li>
+                                    <li onClick={this.changeToMomo}><img width="90%" src={bank} alt=""/></li>
                                 </ul>
 
                            </div>
 
                            <div className="form">
-                               <p className="mainP">
+                               
+
+                                { !this.state.open_momo ? 
+                                <> 
+                                <p className="mainP">
                                    Safe Card Checkout 
                                </p>
                                 <div className="cardImage">
@@ -83,11 +156,20 @@ export default class CheckoutForm extends Component {
                                         </IconContext.Provider>
                                         </div>
                                     </div>
-                                </div>
-
-                                <button className="checkoutBtn">Pay </button>
+                                </div> 
+                               
+                                   <p className="or"> or </p> <br />
+                                    <PayPal setSucess={this.setSuccess} total="100" />
+                                </>
+                                : <div className="momoform">
+                                <label> Provide Your Mobie number  </label>
+                                <input type="number" name="card_number" id="card" onChange={(event) => this.setState({number: event.target.value}) } placeholder="number " />
+                                </div> 
+}
+                              
+                                        
+                            <button className="checkoutBtn" onClick={this.makePayment}> {!this.state.loading  ? "Pay" : <ReactLoading type={"bars"} color={"white"} height={'30px'} width={'30px'} /> } </button>
                             </div>
-
                             <div className="info">
                                 <div className="infoHead2">
                                     <p>Summary Of Your Payment </p>

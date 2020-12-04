@@ -1,15 +1,16 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(209, 214, 226);
+  text-align: center;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -19,7 +20,7 @@ code {
 
 .navigation {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr ;
+  grid-template-columns: 1fr 1fr 1fr;
   padding: 10px;
   height: 50px;
   background-color: white;
@@ -29,12 +30,13 @@ code {
   font-size: medium;
   text-transform: uppercase;
   margin-top: 8px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
-
 
 .checkout {
   width: 90%;
+  max-width: 1500px;
   margin-left: 5%;
   padding: 20px;
   margin-top: 30px;
@@ -48,7 +50,7 @@ li {
   margin-top: -10px;
   text-align: start;
   font-weight: bold;
-  color: #2C3E50;
+  color: #2c3e50;
 }
 
 .formHolder {
@@ -57,7 +59,6 @@ li {
   grid-template-columns: 25% 50% 25%;
 }
 
-
 .form {
   padding: 20px;
   text-align: start;
@@ -65,17 +66,15 @@ li {
 }
 
 input {
-  background-color: rgba(128, 128, 128, 0.315);
+  /* background-color: rgba(224, 224, 224, 0.315); */
   width: 100%;
   outline: none;
-  border: 1px solid var(--main-color);
-  height: 30px;
-  border-radius: 10px;
-  padding: 5px;
+  border: 1.5px solid grey;
+  height: 35px;
+  border-radius: 5px;
+  padding-left: 5px;
   margin-top: 5px;
 }
-
-
 
 .inputs {
   margin-top: 0px;
@@ -83,12 +82,10 @@ input {
 
 .infoPart {
   /* margin: 10px; */
-
 }
 
 .questionMark {
   color: var(--main-color);
-
 }
 
 .cardImage {
@@ -103,15 +100,12 @@ input {
   border-bottom: 1px solid rgba(0, 0, 0, 0.397);
 
   padding-bottom: 5px;
-
 }
 
-
-
-.infoPart li , .infoPart p {
+.infoPart li,
+.infoPart p {
   margin-left: 10px;
 }
-
 
 .infoHead2 {
   background-color: rgb(24, 64, 102);
@@ -124,7 +118,6 @@ input {
   font-size: large;
   width: 94%;
   margin-left: 1%;
-
 }
 
 .lefta {
@@ -148,11 +141,10 @@ ul {
 
 .checkoutInd {
   font-size: 2rem;
-  color: #2C3E50;
+  color: #2c3e50;
   display: grid;
   grid-template-columns: 90% 10%;
   margin-top: 20px;
-
 }
 
 .checkoutInd p {
@@ -161,7 +153,7 @@ ul {
 }
 
 .moreIcom {
-  color: #2C3E50;
+  color: #2c3e50;
 }
 
 .option {
@@ -183,7 +175,7 @@ ul {
 }
 
 .option ul li img {
-  padding-left: 10px;
+  padding: 10px;
   height: 70px;
   object-fit: cover;
 }
@@ -195,13 +187,13 @@ ul {
 
 .two {
   display: grid;
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr 1fr;
   column-gap: 5px;
 }
 
 .towEnd {
   display: grid;
-  grid-template-columns: 80% 10% ;
+  grid-template-columns: 80% 10%;
   column-gap: 10%;
 }
 
@@ -217,11 +209,11 @@ ul {
 .checkoutHead p {
   text-align: end;
   font-size: x-large;
-  color: #2C3E50;
+  color: #2c3e50;
   font-weight: bold;
   text-transform: uppercase;
 }
- .logo {
+.logo {
   display: grid;
   grid-template-columns: 40px 1fr;
 }
@@ -231,13 +223,9 @@ ul {
   grid-template-columns: 60px 1fr;
 }
 
-
-.image  img {
+.image img {
   width: 100%;
 }
-
-
-
 
 .backIcon {
   background-color: var(--main-color);
@@ -246,7 +234,6 @@ ul {
   font-weight: bold;
   font-size: large;
   padding: 10px;
-
 }
 .back {
   text-align: start;
@@ -258,7 +245,7 @@ ul {
   padding: 10px;
 
   height: 40px;
-  border: 1px solid grey ;
+  border: 1px solid grey;
   text-align: end;
   background-color: grey;
 }
@@ -270,34 +257,38 @@ ul {
 .logo {
   text-align: start;
   width: 90%;
-margin-left: 20%;
-margin-top: 5px;
-
+  margin-left: 20%;
+  margin-top: 5px;
 }
 
-.logo .image{
-  
+.logo .image {
   text-align: end;
 }
 
-select {
-outline: 0; 
-background: rgba(138, 138, 138, 0.364); 
-height: 40px;
-padding: 5px; 
-width: 70%;
-background-image: none; 
-border: none;
-border-radius: 10px;
-color: black; 
-} 
-.Countries { 
-height: 3em; 
-background: #2C3E50; 
-color: white;
-border-radius: .25em; 
-} 
+.or {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
 
+select {
+  outline: 0;
+  /* background: rgba(230, 230, 230, 0.664); */
+  height: 35px;
+  padding: 5px;
+  width: 70%;
+  background-image: none;
+  border: 1px solid grey;
+  outline: none;
+  border-radius: 5px;
+  color: black;
+}
+.Countries {
+  height: 3em;
+  background: #2c3e50;
+  color: white;
+  border-radius: 0.25em;
+}
 
 .bigLi {
   font-size: 2rem;
@@ -312,9 +303,8 @@ border-radius: .25em;
   font-weight: bolder;
 }
 
-
 .checkoutBtn {
-  background-color: green;
+  background-color: rgba(0, 170, 0, 0.992);
   color: white;
   margin-top: 20%;
   border-radius: 5px;
@@ -323,6 +313,7 @@ border-radius: .25em;
   font-size: x-large;
   width: 80%;
   margin-left: 10%;
+  text-align: center;
   border: none;
   outline: none;
   height: 40px;
@@ -332,37 +323,35 @@ border-radius: .25em;
   display: none;
 }
 
-select { 
-margin: 0; 
-/* padding: 0 0 0 .5em;  */
-cursor: pointer; 
-} 
-
+select {
+  margin: 0;
+  /* padding: 0 0 0 .5em;  */
+  cursor: pointer;
+}
 
 .info ul li {
   font-size: medium;
 }
 
 @media screen and (max-width: 992px) {
-
   .option ul {
     display: grid;
-    grid-template-columns: 1fr 1fr ;
+    height: 70px;
+    grid-template-columns: 1fr 1fr;
   }
 
   .checkoutInd {
     grid-template-columns: 80% 10%;
-}
-
-
+  }
 
   .inputHolder {
     grid-template-columns: 1fr;
   }
 
   .option li {
+    height: 70px;
     border-right: 1px solid rgba(0, 0, 0, 0.205);
-    border-left: 1px solid  rgba(0, 0, 0, 0.205);
+    border-left: 1px solid rgba(0, 0, 0, 0.205);
   }
   .checkoutHead p {
     font-size: small;
@@ -382,11 +371,11 @@ cursor: pointer;
     grid-template-columns: 1fr 1fr;
   }
   .navigation .logo {
-      display: none;
+    display: none;
   }
 
   .formHolder {
-    grid-template-columns:  1fr;
+    grid-template-columns: 1fr;
   }
   .logo2 {
     display: block;
@@ -403,7 +392,7 @@ cursor: pointer;
     width: 30px;
   }
 
-  .logo2  p {
+  .logo2 p {
     text-align: center;
     margin-top: 5px;
   }
@@ -416,7 +405,4 @@ cursor: pointer;
     font-size: x-small;
     margin-top: 10px;
   }
-
-
-
 }
