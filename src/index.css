@@ -198,7 +198,7 @@ ul {
 .towEnd {
   display: grid;
   grid-template-columns: 80% 10%;
-  column-gap: 10%;
+  column-gap: 5%;
 }
 
 .checkoutHead {
@@ -323,6 +323,11 @@ select {
   height: 40px;
 }
 
+.hiddenBtn {
+  width: 10px;
+  margin-right: 20px;
+  background-color: transparent;
+}
 .logo2 {
   display: none;
 }

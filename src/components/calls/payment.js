@@ -11,7 +11,7 @@ export default class Payment {
         console.log(response.data);
         if (response.data.token === "pending") {
           // setLabel("Verify Payment On Your Mobile ");
-          this.chechStatusMomo(id, setLoading, seterrorMade, seterrorMade);
+          this.chechStatusMomo(id, setLoading, seterrorMade, setScucess);
         } else if (response.data.token === "failed") {
           setLoading(false);
 

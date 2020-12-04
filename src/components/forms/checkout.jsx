@@ -3,6 +3,7 @@ import AfricXyz from '../../Assets/Africaxyz.png'
 import paypal from '../../Assets/payapl.png'
 import bank from '../../Assets/momo.png'
 import credit from '../../Assets/credit.png'
+import cvv from '../../Assets/cvv.jpg'
 import secure from '../../Assets/secure.png'
 import { IconContext } from 'react-icons/lib'
 import { IoIosArrowForward } from "react-icons/io";
@@ -12,7 +13,10 @@ import ReactLoading from 'react-loading';
  import nodeForge from 'node-forge'
  import PayPal from '../calls/paypal'
  import axios from 'axios'
+import MoreIcon from '../navigation/popover'
+import { Typography } from '@material-ui/core'
  
+import  Alert  from '../calls/alert.'
 const momo = new MomoPay()
 
 
@@ -39,6 +43,14 @@ export default class CheckoutForm extends Component {
     //     })
     // }
 
+    changeAlertMessage = (content) => {
+        this.setState({
+            openAlert: true,
+            content: content.content,
+            severity: content.severity
+        })
+    }
+
     makePayment = () => {
 
         // this.setLoading(true)
@@ -46,7 +58,9 @@ export default class CheckoutForm extends Component {
         if(this.state.open_momo) {
             momo.payMomo(this.setLoading , this.setErrorMade, this.state.number ,this.setSuccess)
         } else {
-            alert("Card Payment Is not working now ")
+            this.changeAlertMessage({
+                severity: "info",
+                content: "Card Payment Is not working now "})
         }
     }
 
@@ -68,12 +82,16 @@ export default class CheckoutForm extends Component {
         //     sucess: loading
         // })
 
-        alert("success it's made haha ")
+        this.changeAlertMessage({
+            severity: "success",
+            content: "success it's made haha " })
     } 
 
 
     setErrorMade = (loading) => {
-        alert("Something Went Wrong      ")
+        this.changeAlertMessage({
+            severity: "error",
+            content: "Something Went Wrong " })
         this.setState({
             error: loading
         })
@@ -131,9 +149,9 @@ export default class CheckoutForm extends Component {
 
                                 <div className="towEnd">
                                     <p>Do Your Card Permit Online Payment </p>
-                                    <IconContext.Provider value={{className:"questionMark"}}>
-                                            <BsFillQuestionCircleFill />
-                                        </IconContext.Provider>
+                                   <MoreIcon>
+                                       <Typography> More Infor mation </Typography>
+                                   </MoreIcon>
                                 </div>
 
                                 <div className="inputs">
@@ -161,15 +179,20 @@ export default class CheckoutForm extends Component {
                                         <label> Verfifcation Code  : </label>
                                         <div className="towEnd">
                                         <input type="number" name="card_number" id="card"/>
-                                        <IconContext.Provider value={{className:"questionMark"}}>
-                                            <BsFillQuestionCircleFill />
-                                        </IconContext.Provider>
+                                       <MoreIcon>
+                                           <p> Your CVV code  </p>s
+                                           <img src={cvv} width="200px" alt=""/>
+                                       </MoreIcon>
                                         </div>
                                     </div>
+
                                 </div> 
                                
                                    <p className="or"> or </p> <br />
                                     <PayPal setSucess={this.setSuccess} total="100" />
+
+                           
+
                                 </>
                                 : <div className="momoform">
                                 <label> Provide Your Mobie number  </label>
@@ -177,8 +200,7 @@ export default class CheckoutForm extends Component {
                                 </div> 
 }
                               
-                                        
-                            <button className="checkoutBtn" onClick={this.makePayment}> {!this.state.loading  ? "Pay" : <ReactLoading type={"bars"} color={"white"} height={'30px'} width={'30px'} /> } </button>
+<button className="sq-input" onClick={this.makePayment}> {!this.state.loading  ? "Pay" : <ReactLoading type={"bars"} color={"white"} height={'30px'} width={'30px'} /> } </button>     
                             </div>
                             <div className="info">
                                 <div className="infoHead2">
@@ -188,9 +210,9 @@ export default class CheckoutForm extends Component {
                                 <div className="infoPart">
                                     <div className="towEnd">
                                         <p>Merchant</p>
-                                        <IconContext.Provider value={{className:"questionMark"}}>
-                                            <BsFillQuestionCircleFill />
-                                        </IconContext.Provider>
+                                       <MoreIcon>
+                                           <p>Merchant Information  </p>
+                                       </MoreIcon>
                                     </div>
                                     <ul>
                                         <li>ID:RWF121312</li>
@@ -202,10 +224,10 @@ export default class CheckoutForm extends Component {
 
                                 <div className="infoPart">
                                 <div className="towEnd">
-                                        <p>Paymeny Number</p>
-                                        <IconContext.Provider value={{className:"questionMark"}}>
-                                            <BsFillQuestionCircleFill />
-                                        </IconContext.Provider>
+                                        <p>Payment Number</p>
+                                       <MoreIcon>
+                                           <p> Pyament Number Info  </p>
+                                       </MoreIcon>
                                     </div>
                                     <ul>
                                         <li>#234342</li>
@@ -225,6 +247,12 @@ export default class CheckoutForm extends Component {
                             </div>
                        </div>
                     </div>
+
+                    <Alert open={this.state.openAlert} severity={this.state.severity} handleClose={() => {
+                        this.setState({
+                            openAlert: false 
+                        })
+                    }} content={this.state.content} />
             </Fragment>
         )
     }

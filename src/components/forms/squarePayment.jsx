@@ -1,76 +1,31 @@
-import * as React from 'react'
+import { Component } from "react";
 
- 
+export default class PaymentForm extends Component {
 
- export const  SquareCard = () => {
 
+    componentDidMount () {
+        const script = document.createElement("script");
+        const clientId = "Af1O975CBLLtSbPyHJ3N_PPDj4eAiFUULRKh4EULj8clBG5ggXLPycpA8OSCe_UTFoYFWkyVZbhuswjQ"
+        
+        const SrcLink = `https://www.paypal.com/sdk/js?components=hosted-fields&client-id=Client-ID&merchant-id=Merchant-ID&currency=USD&intent=capture`
+        script.src = "";
+        script.async = true;
     
-const paymentForm = new window.SqPaymentForm({
-    // Initialize the payment form elements
-    
-    //TODO: Replace with your sandbox application ID
-    applicationId: "REPLACE_WITH_APPLICATION_ID",
-    inputClass: 'sq-input',
-    autoBuild: false,
-    // Customize the CSS for SqPaymentForm iframe elements
-    inputStyles: [{
-        fontSize: '16px',
-        lineHeight: '24px',
-        padding: '16px',
-        placeholderColor: '#a0a0a0',
-        backgroundColor: 'transparent',
-    }],
-    // Initialize the credit card placeholders
-    cardNumber: {
-        elementId: 'sq-card-number',
-        placeholder: 'Card Number'
-    },
-    cvv: {
-        elementId: 'sq-cvv',
-        placeholder: 'CVV'
-    },
-    expirationDate: {
-        elementId: 'sq-expiration-date',
-        placeholder: 'MM/YY'
-    },
-    postalCode: {
-        elementId: 'sq-postal-code',
-        placeholder: 'Postal'
-    },
-    // SqPaymentForm callback functions
-    callbacks: {
-        /*
-        * callback function: cardNonceResponseReceived
-        * Triggered when: SqPaymentForm completes a card nonce request
-        */
-        cardNonceResponseReceived: function (errors, nonce, cardData) {
-        if (errors) {
-            // Log errors from nonce generation to the browser developer console.
-            console.error('Encountered errors:');
-            errors.forEach(function (error) {
-                console.error('  ' + error.message);
-            });
-            alert('Encountered errors, check browser developer console for more details');
-             return;
-        }
-        //TODO: Replace alert with code in step 2.1
-        alert(`The generated nonce is:\n${nonce}`);
-     }
-   }
- });
- //TODO: paste code from step 1.1.4
+        document.body.appendChild(script);
+    }
 
- paymentForm.build();
-
-     return (
-        <div id="form-container">
-        <div id="sq-card-number"></div>
-        <div className="third" id="sq-expiration-date"></div>
-        <div className="third" id="sq-postal-code"></div>
-        <div className="third" id="sq-cvv"></div>
-
-        <button id="sq-creditcard" className="button-credit-card" onClick={(event) => window.onGetCardNonce(event)}>Pay </button>
-      </div>  
-     )
- }
-//TODO: paste code from step 2.1.2
+    render() {
+        return (
+            
+    <form id="my-sample-form">
+    <label for="card-number">Card Number</label>
+    <div id="card-number"></div>
+    <label for="expiration-date">Expiration Date</label>
+    <div id="expiration-date"></div>
+    <label for="cvv">CVV</label>
+    <div id="cvv"></div>
+    <button value="submit" id="submit" class="btn">Pay with Card</button>
+  </form>
+        )
+    }
+}
