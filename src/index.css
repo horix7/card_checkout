@@ -46,6 +46,10 @@ li {
   margin-bottom: 2px;
 }
 
+.paypal-powered-by {
+  display: none;
+}
+
 .towEnd p {
   margin-top: -10px;
   text-align: start;
@@ -336,7 +340,7 @@ select {
 @media screen and (max-width: 992px) {
   .option ul {
     display: grid;
-    height: 70px;
+    height: 100px;
     grid-template-columns: 1fr 1fr;
   }
 
@@ -349,7 +353,7 @@ select {
   }
 
   .option li {
-    height: 70px;
+    height: 100px;
     border-right: 1px solid rgba(0, 0, 0, 0.205);
     border-left: 1px solid rgba(0, 0, 0, 0.205);
   }

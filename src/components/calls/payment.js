@@ -22,7 +22,7 @@ export default class Payment {
         }
       })
       .catch((err) => {
-        setLabel("You Took Too long To Confirm");
+        // setLabel("You Took Too long To Confirm");
         setTimeout(() => {
           setLoading(false);
           seterrorMade(true);
@@ -50,7 +50,12 @@ export default class Payment {
       );
 
       if (paymentReq.data.data.state === "processing") {
-        this.chechStatusMomo(postForPayment.trxRef, setLoading, seterrorMade);
+        this.chechStatusMomo(
+          postForPayment.trxRef,
+          setLoading,
+          seterrorMade,
+          setScucess
+        );
       } else {
         seterrorMade(true);
 

@@ -11,6 +11,7 @@ import MomoPay from '../calls/payment'
 import ReactLoading from 'react-loading';
  import nodeForge from 'node-forge'
  import PayPal from '../calls/paypal'
+ import axios from 'axios'
  
 const momo = new MomoPay()
 
@@ -26,10 +27,17 @@ export default class CheckoutForm extends Component {
         number: "",
         error:false,
         sucess: false,
+        form: null,
         loading: false
     }
 
 
+
+    // getCreditCardPaymentFrom = () => {
+    //     axios.get("http://localhost:3000/").then(response => {
+    //         set
+    //     })
+    // }
 
     makePayment = () => {
 
@@ -84,6 +92,8 @@ export default class CheckoutForm extends Component {
 
 
     render() {
+
+        
         return (
             <Fragment>
 
