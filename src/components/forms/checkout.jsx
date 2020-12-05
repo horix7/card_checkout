@@ -19,9 +19,14 @@ import { loadStripe } from "@stripe/stripe-js";
  import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./card";
 import  Alert  from '../calls/alert.'
-const momo = new MomoPay()
+import FluertWave from './fluttercheckout'
 
-const promise = loadStripe("pk_test_51HmcOVH8YQ1PwvyejL4S6hKDCMuHMeEAwEIlZxBFafEnDK3Ka0M8gwBqZc4vLzOJGlmmQW3wTc5EJyECQsPPrtYM00ViNcbHpR");
+
+
+const momo = new MomoPay()
+const id = "pk_test_51HmcOVH8YQ1PwvyejL4S6hKDCMuHMeEAwEIlZxBFafEnDK3Ka0M8gwBqZc4vLzOJGlmmQW3wTc5EJyECQsPPrtYM00ViNcbHpR"
+const secret = "sk_test_51HmcOVH8YQ1PwvyeIqDD8BpbehP8QPDImrEpgZKFyyh7HJ03DpyoCmngVy1ShYzeb2wUjKa6oZqd9H1YpT5p5iM000ZVbeJnFh"
+const promise = loadStripe(id);
 
 
 
@@ -165,7 +170,10 @@ export default class CheckoutForn extends Component {
 
                                    <p className="or"> or </p> <br />
                                     <PayPal setSucess={this.setSuccess} total="100" />
+                                   
+                                   <p className="or"> or </p> <br />
 
+                                    <FluertWave />
                            
 
                                 </>

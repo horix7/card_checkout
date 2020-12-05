@@ -17,8 +17,7 @@ export default function CheckoutForm() {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    window
-      .fetch("/create-payment-intent", {
+  fetch("https://backxyzcheck.herokuapp.com/create-payment-intent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -56,10 +55,10 @@ export default function CheckoutForm() {
     // and display any errors as the customer types their card details
     setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
-  };
-
+  }; 
   const handleSubmit = async ev => {
-    ev.preventDefault();
+    try {
+      ev.preventDefault();
     setProcessing(true);
 
     const payload = await stripe.confirmCardPayment(clientSecret, {
@@ -75,6 +74,9 @@ export default function CheckoutForm() {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
+    }
+    } catch(err) {
+      console.log("===> " , err)
     }
   };
 
@@ -101,10 +103,9 @@ export default function CheckoutForm() {
       )}
       {/* Show a success message upon completion */}
       <p className={succeeded ? "result-message" : "result-message hidden"}>
-        {/* Payment succeeded, see the result in your */}
-         
-         Refresh the page to pay again.
+        Payment succeeded, see the result in your
       </p>
     </form>
   );
 }
+ 
