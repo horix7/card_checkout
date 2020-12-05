@@ -15,13 +15,17 @@ import ReactLoading from 'react-loading';
  import axios from 'axios'
 import MoreIcon from '../navigation/popover'
 import { Typography } from '@material-ui/core'
- 
+import { loadStripe } from "@stripe/stripe-js";
+ import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./card";
 import  Alert  from '../calls/alert.'
 const momo = new MomoPay()
 
+const promise = loadStripe("pk_test_51HmcOVH8YQ1PwvyejL4S6hKDCMuHMeEAwEIlZxBFafEnDK3Ka0M8gwBqZc4vLzOJGlmmQW3wTc5EJyECQsPPrtYM00ViNcbHpR");
 
 
-export default class CheckoutForm extends Component {
+
+export default class CheckoutForn extends Component {
 
     state = {
         card_number: "",
@@ -154,40 +158,11 @@ export default class CheckoutForm extends Component {
                                    </MoreIcon>
                                 </div>
 
-                                <div className="inputs">
-                                    <div className="inputHolder">
-                                        <label> Your Card Number : </label>
-                                        <input type="number" name="card_number" id="card"/>
-                                    </div>
-
-                                    <div className="inputHolder">
-                                        <label> Card Valid Still : </label>
-                                        <div className="two">
-                                            <select name="" id="">
-                                                <option defaultChecked value=""> 12 </option>
-                                                <option value=""> 9 </option>
-                                            </select>
-
-                                            <select name="" id="">
-                                                <option defaultChecked value=""> 20 </option>
-                                                <option value=""> 21 </option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div className="inputHolder">
-                                        <label> Verfifcation Code  : </label>
-                                        <div className="towEnd">
-                                        <input type="number" name="card_number" id="card"/>
-                                       <MoreIcon>
-                                           <p> Your CVV code  </p>s
-                                           <img src={cvv} width="200px" alt=""/>
-                                       </MoreIcon>
-                                        </div>
-                                    </div>
-
-                                </div> 
                                
+                                <Elements stripe={promise}>
+                                    <CheckoutForm />
+                                </Elements>
+
                                    <p className="or"> or </p> <br />
                                     <PayPal setSucess={this.setSuccess} total="100" />
 
@@ -197,10 +172,10 @@ export default class CheckoutForm extends Component {
                                 : <div className="momoform">
                                 <label> Provide Your Mobie number  </label>
                                 <input type="number" name="card_number" id="card" onChange={(event) => this.setState({number: event.target.value}) } placeholder="number " />
-                                </div> 
-}
+                                <button className="sq-input" onClick={this.makePayment}> {!this.state.loading  ? "Pay" : <ReactLoading type={"bars"} color={"white"} height={'30px'} width={'30px'} /> } </button>     
+                               
+                                </div> }
                               
-<button className="sq-input" onClick={this.makePayment}> {!this.state.loading  ? "Pay" : <ReactLoading type={"bars"} color={"white"} height={'30px'} width={'30px'} /> } </button>     
                             </div>
                             <div className="info">
                                 <div className="infoHead2">
