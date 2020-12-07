@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const braintree = require("braintree");
 const axios = require("axios");
+const { BadGateway, BadRequest } = require("http-errors");
+require("dotenv").config();
 
 router.post("/", (req, res, next) => {
   const gateway = new braintree.BraintreeGateway({
@@ -48,8 +50,8 @@ router.get("/payment/:id", async (req, res) => {
     method: "post",
     url: "https://payments-api.fdibiz.com/v2/auth",
     data: {
-      AppId: "6f5b098a-d46c-403c-b596-14181a054a87",
-      Secret: "56462810-be19-461f-abdc-037be2c7cc40",
+      AppId: process.env.Api_Key,
+      Secret: process.env.Api_Secret,
     },
   });
 
@@ -60,7 +62,7 @@ router.get("/payment/:id", async (req, res) => {
   });
 
   return res
-    .status(OK)
+    .status(200)
     .json({
       token: getStatus.data.data.trxStatus,
     })
@@ -72,28 +74,37 @@ router.post("/payment", async (req, res) => {
     method: "post",
     url: "https://payments-api.fdibiz.com/v2/auth",
     data: {
-      AppId: "6f5b098a-d46c-403c-b596-14181a054a87",
-      Secret: "56462810-be19-461f-abdc-037be2c7cc40",
+      AppId: process.env.Api_Key,
+      Secret: process.env.Api_Secret,
     },
   });
 
-  const paymentPost = await axios({
-    method: "post",
-    url: "https://payments-api.fdibiz.com/v2/momo/pull",
-    data: req.body,
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: `Bearer ${result.data.data.token}`,
-    },
-  });
-
-  return res
-    .status(OK)
-    .json({
-      data: paymentPost.data.data,
-    })
-    .end();
+  try {
+    const paymentPost = await axios({
+      method: "post",
+      url: "https://payments-api.fdibiz.com/v2/momo/pull",
+      data: req.body,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${result.data.data.token}`,
+      },
+    });
+    return res
+      .status(200)
+      .json({
+        data: paymentPost.data.data,
+      })
+      .end();
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(400)
+      .json({
+        data: error,
+      })
+      .end();
+  }
 });
 
 module.exports = router;

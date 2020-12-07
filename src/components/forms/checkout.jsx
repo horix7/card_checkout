@@ -14,7 +14,7 @@ import ReactLoading from 'react-loading';
  import PayPal from '../calls/paypal'
  import axios from 'axios'
 import MoreIcon from '../navigation/popover'
-import { Typography } from '@material-ui/core'
+import { Button, TextField, Typography } from '@material-ui/core'
 import { loadStripe } from "@stripe/stripe-js";
  import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./card";
@@ -178,9 +178,8 @@ export default class CheckoutForn extends Component {
 
                                 </>
                                 : <div className="momoform">
-                                <label> Provide Your Mobie number  </label>
-                                <input type="number" name="card_number" id="card" onChange={(event) => this.setState({number: event.target.value}) } placeholder="number " />
-                                <button className="sq-input" onClick={this.makePayment}> {!this.state.loading  ? "Pay" : <ReactLoading type={"bars"} color={"white"} height={'30px'} width={'30px'} /> } </button>     
+                                <TextField style={{width: "100%", marginBottom: "20px"}} variant="outlined" label="Provide Your Mobie number" type="number" name="card_number" id="card" onChange={(event) => this.setState({number: event.target.value}) } placeholder="number " />
+                                <Button className="sq-input" variant="contained" color="primary" onClick={this.makePayment}> {!this.state.loading  ? "Pay" : <ReactLoading type={"bars"} color={"white"} height={'30px'} width={'30px'} /> } </Button>     
                                
                                 </div> }
                               

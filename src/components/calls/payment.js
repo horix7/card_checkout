@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default class Payment {
   chechStatusMomo = (id, setLoading, seterrorMade, setScucess) => {
-    let link = `https://sawafitness.herokuapp.com/api/payment/${id}`;
+    let link = `https://backxyzcheck.herokuapp.com/api/payment/${id}`;
     axios({
       method: "get",
       url: link,
@@ -39,13 +39,13 @@ export default class Payment {
       accountId: "6f5b098a-d46c-403c-b596-14181a054a87",
       msisdn: number,
       amount: 100,
-      callback: "https://sawafitness.herokuapp.com/",
+      callback: "https://backxyzcheck.herokuapp.com/",
     };
     setLoading(true);
 
     try {
       const paymentReq = await axios.post(
-        "https://sawafitness.herokuapp.com/api/payment/",
+        "https://backxyzcheck.herokuapp.com/api/payment/",
         postForPayment
       );
 
@@ -58,7 +58,7 @@ export default class Payment {
         );
       } else {
         seterrorMade(true);
-
+        console.log(paymentReq);
         setLoading(false);
       }
     } catch (error) {

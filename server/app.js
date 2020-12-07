@@ -52,7 +52,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/index", indexRouter);
 app.use("/users", usersRouter);
 // The checkout route
-app.use("/checkout", checkout);
+app.use("/api", checkout);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
