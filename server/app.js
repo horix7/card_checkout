@@ -7,10 +7,9 @@ var cors = require("cors");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 const checkout = require("./routes/checkout");
-const id =
-  "pk_test_51HmcOVH8YQ1PwvyejL4S6hKDCMuHMeEAwEIlZxBFafEnDK3Ka0M8gwBqZc4vLzOJGlmmQW3wTc5EJyECQsPPrtYM00ViNcbHpR";
-const secret =
-  "sk_test_51HmcOVH8YQ1PwvyeIqDD8BpbehP8QPDImrEpgZKFyyh7HJ03DpyoCmngVy1ShYzeb2wUjKa6oZqd9H1YpT5p5iM000ZVbeJnFh";
+const id = ""
+   
+const secret =  "";
 
 const stripe = require("stripe")(secret);
 
